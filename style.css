@@ -1,0 +1,576 @@
+
+  /* นำเข้าฟอนต์เพื่อความหรูหราและอ่านง่าย */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Anuphan:wght@300;400;600&display=swap');
+
+/* ปรับ Container ของ Profile และ Name ให้เรียงกัน */
+.profile-hero-container {
+    display: flex;
+    flex-direction: row; /* จัดเรียงแนวนอน */
+    align-items: center; /* กึ่งกลางแนวตั้ง */
+    justify-content: center; /* กึ่งกลางหน้าจอ */
+    gap: 40px;           /* ระยะห่างระหว่างรูปกับชื่อ */
+    margin-bottom: 3rem;
+    flex-wrap: wrap;     /* ให้รองรับหน้าจอมือถือ */
+}
+
+/* ปรับแก้ให้วงกลมไม่เด้งลงข้างล่าง */
+.profile-picture {
+    margin: 0 !important; /* ยกเลิก margin auto เดิม */
+    flex-shrink: 0;       /* ไม่ให้รูปโดนบีบ */
+}
+
+/* ปรับการจัดวางตัวอักษรให้ชิดซ้าย (เมื่ออยู่ข้างรูป) */
+.name-content {
+    text-align: left;    /* เปลี่ยนจาก center เป็น left */
+    z-index: 20;
+}
+
+/* ปรับขนาดตัวอักษรให้พอดีเมื่ออยู่แนวนอน */
+.name-main {
+    font-size: 4rem;     /* ลดขนาดลงเล็กน้อยเพื่อให้พอดีบรรทัด */
+}
+
+  /* พื้นหลัง Deep Sea แบบพรีเมียม */
+  #app {
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% -20%, #1e40af 0%, #0f172a 45%, var(--deep-blue) 100%) !important;
+    background-attachment: fixed !important;
+    position: relative;
+  }
+   :root {
+    --deep-blue: #020617;
+    --ocean-blue: #1e3a8a;
+    --cyan-glow: #22d3ee;
+    --glass-white: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+      /* ชื่อใต้รูปภาพ ปรับให้ชัดเจน */
+    .name-content {
+      text-align: center;
+      z-index: 20;
+    }
+
+    .name-main {
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+      letter-spacing: -2px;
+    }
+    
+    
+    .name-sub {
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #fcfcfc;
+      text-transform: uppercase;
+      letter-spacing: 0.8rem;
+      margin-top: -5px;
+    }
+
+    /* Standard Elements */
+    .sunlight {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(125deg, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .profile-wrap {
+      position: relative;
+      z-index: 10;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(45deg, var(--cyan-glow), transparent);
+      box-shadow: 0 0 50px rgba(34, 211, 238, 0.3);
+      animation: float 6s ease-in-out infinite;
+      margin-bottom: 2rem; /* ระยะห่างระหว่างรูปกับชื่อ */
+    }
+    nav {
+      backdrop-filter: blur(20px);
+      background: rgba(2, 6, 23, 0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .section-card {
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .bubble {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: bubble-up var(--duration) infinite linear;
+    }
+/* กำหนดความกว้างมาตรฐานให้ทุกกล่อง */
+.standard-container {
+    max-width: 1000px; /* คุณสามารถปรับเลขนี้เป็น 1200px ได้ตามความชอบ */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+  .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            border: 6px solid #fefefe;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+            overflow: hidden;
+            position: relative;
+            animation: scaleIn 1s ease-out, float 6s ease-in-out infinite 1s;
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-picture::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: rotate 3s linear infinite;
+        }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', 'Anuphan', sans-serif;
+    color: #ffffff;
+    background-color: var(--deep-blue);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* พื้นหลัง Deep Sea แบบพรีเมียม */
+  #app {
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% -20%, #1e40af 0%, #0f172a 45%, var(--deep-blue) 100%) !important;
+    background-attachment: fixed !important;
+    position: relative;
+  }
+
+  /* ลำแสง Sunlight แบบฟุ้งนวล */
+  .sunlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+/* ชื่อใต้รูปภาพ ปรับให้ชัดเจน */
+    .name-content {
+      text-align: center;
+      z-index: 20;
+    }
+
+    .name-main {
+      font-size: 5rem;
+      font-weight: 1000;
+      line-height: 1;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+      letter-spacing: -2px;
+    }
+
+  /* Navigation Bar: เรียบหรูสไตล์โปร่งแสง */
+  nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(2, 6, 23, 0.6);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0.5rem 0;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--cyan-glow) !important;
+    text-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+  }
+
+  /* Section Cards: Glassmorphism ขั้นสูง */
+  .section-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    padding: 3.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+  }
+
+  .section-card:hover {
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+    transform: translateY(-8px);
+  }
+
+  /* Typography: หัวข้อไล่เฉดสี */
+  h1 {
+    font-size: 4rem !important;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(to bottom, #ce2828 30%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    color: var(--cyan-glow);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 1rem !important;
+  }
+  
+
+  /* ฟองอากาศลอยตัว (Bubbles) แบบนวลตา */
+  .bubble {
+    position: fixed;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.02));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.1), 0 4px 15px rgba(0,0,0,0.1);
+    animation: bubble-up var(--duration) infinite linear;
+  }
+
+  @keyframes bubble-up {
+    0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) scale(1.1) translateX(var(--drift)); opacity: 0; }
+  }
+
+  /* เอฟเฟกต์ลอยตัว (Float) */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-25px) scale(1.02); }
+  }
+
+  /* ข้อมูลติดต่อ (Contact Grid) */
+  .contact-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-item:hover {
+    background: rgba(241, 241, 241, 0.05);
+    border-color: var(--cyan-glow);
+  }
+
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* พื้นหลัง Deep Sea */
+    #app {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #1e3a8a 0%, #1e40af 20%, #172554 50%, #020617 100%) !important;
+      background-attachment: fixed !important;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ลำแสงจากผิวน้ำ */
+    .sunlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ฟองอากาศลอยตัว */
+    .bubble {
+      position: fixed;
+      bottom: -50px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: bubble-up var(--duration) infinite linear;
+      z-index: 1;
+    }
+
+    @keyframes bubble-up {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-110vh) translateX(var(--drift)); opacity: 0; }
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .float-animation { animation: float 5s ease-in-out infinite; }
+    .page-content { animation: fadeIn 1s ease-out; }
+
+    nav {
+      backdrop-filter: blur(15px);
+      background: rgba(15, 23, 42, 0.7);
+    }
+    /* สไตล์สำหรับกล่อง Address */
+.address-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 20px;
+    padding: 20px 30px;
+    margin-top: 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    max-width: fit-content;
+}
+
+.address-card:hover {
+    background: rgba(34, 211, 238, 0.1);
+    border-color: var(--cyan-glow);
+    transform: translateX(10px); /* ขยับเล็กน้อยเมื่อเอาเมาส์วาง */
+}
+
+.address-icon {
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.5));
+}
+
+.address-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--cyan-glow);
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+#education {
+    margin-top: 40px; /* เพิ่มระยะห่างด้านบนของกล่อง Education โดยเฉพาะ */
+}
+
+.address-value {
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+    .nav-link {
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .nav-link:hover {
+      background: rgba(34, 211, 238, 0.2);
+      color: #22d3ee !important;
+    }
+
+    .section-card {
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+/* ตกแต่งเพิ่มเติมสำหรับกล่องย่อย Address */
+.address-box {
+    border-left: 4px solid var(--cyan-glow); /* เส้นขีดด้านข้างเหมือน Education */
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.address-box:hover {
+    background: rgba(34, 211, 238, 0.1);
+}
+    /* ปรับแต่งภาพ 3D */
+    .icon-3d {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+    }
+
+  /* ลำแสง Sunlight แบบฟุ้งนวล */
+  .sunlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Navigation Bar: เรียบหรูสไตล์โปร่งแสง */
+  nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(2, 6, 23, 0.6);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0.5rem 0;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--cyan-glow) !important;
+    text-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+  }
+
+  /* Section Cards: Glassmorphism ขั้นสูง */
+  .section-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    padding: 3.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+  }
+  
+
+
+
+  .section-card:hover {
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+    transform: translateY(-8px);
+  }
+
+  /* Typography: หัวข้อไล่เฉดสี */
+  h1 {
+    font-size: 4rem !important;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(to bottom, #ffffff 30%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    color: var(--cyan-glow);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 1rem !important;
+  }
+  h5 {
+    font-size: 2rem !important;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(to bottom, #921d1d 30%, #133d78 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ฟองอากาศลอยตัว (Bubbles) แบบนวลตา */
+  .bubble {
+    position: fixed;
+    background: linear-gradient(135deg, rgba(238, 230, 230, 0.2), rgba(255,255,255,0.02));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.454), 0 4px 15px rgba(0,0,0,0.1);
+    animation: bubble-up var(--duration) infinite linear;
+  }
+
+  @keyframes bubble-up {
+    0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) scale(1.1) translateX(var(--drift)); opacity: 0; }
+  }
+  
+
+  /* เอฟเฟกต์ลอยตัว (Float) */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-25px) scale(1.02); }
+  }
+
+  /* ข้อมูลติดต่อ (Contact Grid) */
+  .contact-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-item:hover {
+    background: rgba(34, 211, 238, 0.05);
+    border-color: var(--cyan-glow);
+  }
